@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# preper working dir
+if [ -d /tmp/big-update ]; then
+    rm -rf /tmp/big-update
+fi
+mkdir -p /tmp/big-update
+
+# do the job
+apt-get update
+apt-get -u dist-upgrade --assume-no >> /tmp/big-update/checkout
+sed -i 1d /tmp/big-update/checkout
+sed -i 1d /tmp/big-update/checkout
+sed -i 1d /tmp/big-update/checkout
+sed -i 1d /tmp/big-update/checkout
+sed -i '$ d' /tmp/big-update/checkout
+sed -i '$ d' /tmp/big-update/checkout
+exit

@@ -1,0 +1,5 @@
+LOCAL1="\t<b>Atualizações estão disponíveis!</b>\t\t"
+LOCAL2="\tDeseja instalar as atualizações?\n"
+LOCAL3="Sim"
+LOCAL4="Não"
+LOCAL5="Ocultar"

@@ -1,0 +1,46 @@
+#!/bin/bash
+# big-lxqt-upgrade: updates package list and displays
+# information that some updates are available
+
+# get default's locale file
+LANGDIR="/usr/share/biglinux/big-lxqt-upgrade"
+if [ "`cat /etc/default/locale | grep pt_BR`" != "" ]; then
+. $LANGDIR/pt_BR
+else
+. $LANGDIR/en
+fi
+
+DIALOG="yad --posx=-10 --posy=-80 --undecorated --skip-taskbar --borders=5 --image=synaptic --on-top"
+TEXT="--text="
+YESNO="--button=$LOCAL5:2 --button=$LOCAL3:0 --button=$LOCAL4:1 "
+
+# do not run it on live system
+TESTMODE=`grep "live" /etc/passwd`
+if [ "$TESTMODE" != "" ]; then
+	exit
+fi
+
+# check out connection to biglinux repository
+PINGTEST=$(ping -c 1 repository.biglinux.com.br | grep [0-9])	
+if [ "$PINGTEST" = "" ]; then
+    exit
+fi
+
+sudo /usr/bin/big-lxqt-upgrade-exe
+
+UPGRADE=$(cat /tmp/big-update/checkout | tail -n2 | grep [kM]B)
+
+# display a message
+if [ "$UPGRADE" != "" ]; then
+	$DIALOG $TEXT"\n\n$LOCAL1\n\n$LOCAL2" $YESNO
+	RET="$?"
+	# run synaptic
+	if [ "$RET" = "0" ]; then
+		synaptic-pkexec --non-interactive -o Synaptic::closeZvt=true --hide-main-window --dist-upgrade-mode
+    elif [ "$RET" = "2" ]; then
+       cp /etc/xdg/autostart/big-lxqt-upgrade.desktop  $HOME/.config/autostart
+       echo "Hidden=true" >> $HOME/.config/autostart/big-lxqt-upgrade.desktop
+    else
+        exit
+	fi
+fi

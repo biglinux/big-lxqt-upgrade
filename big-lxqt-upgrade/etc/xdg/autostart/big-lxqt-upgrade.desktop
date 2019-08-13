@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Name=Big LXQt Upgrade
+Exec=/usr/bin/big-lxqt-upgrade
+X-LXQt-Need-Tray=true
+OnlyShowIn=LXQt;
