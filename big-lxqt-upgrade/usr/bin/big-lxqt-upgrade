@@ -11,7 +11,7 @@ else
 . $LANGDIR/en
 fi
 
-DIALOG="yad --posx=-10 --posy=-80 --undecorated --skip-taskbar --borders=5 --image=synaptic --on-top"
+DIALOG="yad --posx=-10 --posy=-50 --undecorated --skip-taskbar --borders=5 --image=synaptic --on-top"
 TEXT="--text="
 YESNO="--button=$LOCAL5:2 --button=$LOCAL3:0 --button=$LOCAL4:1 "
 OK="--button=gtk-ok"
