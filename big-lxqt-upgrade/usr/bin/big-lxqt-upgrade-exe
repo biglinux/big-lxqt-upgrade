@@ -1,18 +1,11 @@
 #!/bin/bash
-
 # preper working dir
-if [ -d /tmp/big-update ]; then
-    rm -rf /tmp/big-update
-fi
+[[ -d /tmp/big-update ]] && rm -rf /tmp/big-update
 mkdir -p /tmp/big-update
-
 # do the job
 apt-get update
-apt-get -u dist-upgrade --assume-no >> /tmp/big-update/checkout
-sed -i 1d /tmp/big-update/checkout
-sed -i 1d /tmp/big-update/checkout
-sed -i 1d /tmp/big-update/checkout
-sed -i 1d /tmp/big-update/checkout
-sed -i '$ d' /tmp/big-update/checkout
-sed -i '$ d' /tmp/big-update/checkout
+apt-get -u dist-upgrade --assume-no >> /tmp/big-update/save
+sed -i '1,4d' /tmp/big-update/save
+sed -i '$d' /tmp/big-update/save
+sed -i '$d' /tmp/big-update/save
 exit

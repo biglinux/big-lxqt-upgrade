@@ -1,10 +1,11 @@
 #!/bin/bash
+# big-lxqt-upgrade baseado no sparky-aptus-upgrade-checker "pavroo" e modificado por Eltonff
 # big-lxqt-upgrade: updates package list and displays
 # information that some updates are available
 
 # get default's locale file
 LANGDIR="/usr/share/biglinux/big-lxqt-upgrade"
-if [ "`cat /etc/default/locale | grep pt_BR`" != "" ]; then
+if [ $(echo $LANG | grep pt_BR) != "" ]; then
 . $LANGDIR/pt_BR
 else
 . $LANGDIR/en
@@ -13,11 +14,10 @@ fi
 DIALOG="yad --posx=-10 --posy=-80 --undecorated --skip-taskbar --borders=5 --image=synaptic --on-top"
 TEXT="--text="
 YESNO="--button=$LOCAL5:2 --button=$LOCAL3:0 --button=$LOCAL4:1 "
-
+OK="--button=gtk-ok"
 # do not run it on live system
-TESTMODE=`grep "live" /etc/passwd`
-if [ "$TESTMODE" != "" ]; then
-	exit
+if [  -e "/rofs" ]; then
+    exit
 fi
 
 # check out connection to biglinux repository
@@ -28,11 +28,13 @@ fi
 
 sudo /usr/bin/big-lxqt-upgrade-exe
 
-UPGRADE=$(cat /tmp/big-update/checkout | tail -n2 | grep [kM]B)
+UPGRADE=$(cat /tmp/big-update/save | tail -n2 | grep [kM]B)
+PKG=$(cat /tmp/big-update/save | tail -n3 | awk -F',' '{print $1}' | head -n1 | sed 's|atualizados|para atualizar|;s|upgraded|packages to upgrade|')
+QTD=$(cat /tmp/big-update/save | tail -n2 | head -n1)
 
 # display a message
 if [ "$UPGRADE" != "" ]; then
-	$DIALOG $TEXT"\n\n$LOCAL1\n\n$LOCAL2" $YESNO
+	$DIALOG $TEXT"\n$LOCAL1\n\n\t$PKG\n\t$QTD\n\n$LOCAL2" $YESNO
 	RET="$?"
 	# run synaptic
 	if [ "$RET" = "0" ]; then
@@ -40,6 +42,7 @@ if [ "$UPGRADE" != "" ]; then
     elif [ "$RET" = "2" ]; then
        cp /etc/xdg/autostart/big-lxqt-upgrade.desktop  $HOME/.config/autostart
        echo "Hidden=true" >> $HOME/.config/autostart/big-lxqt-upgrade.desktop
+       $DIALOG $TEXT"\n$LOCAL6" $OK
     else
         exit
 	fi
