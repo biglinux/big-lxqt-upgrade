@@ -1,8 +1,8 @@
 d41d8cd98f00b204e9800998ecf8427e  DEBIAN/md5sums
-710beff4f7d2a74b61c70c99f0c32ed1  DEBIAN/control
+6d5a98c9353835e08c385f905f81fc75  DEBIAN/control
 5bf10870b242c4dfa969024ad56c0605  etc/xdg/autostart/big-lxqt-upgrade.desktop
 2b661f89115b992ca80ae6506932f0e7  etc/sudoers.d/bigupdate
-e0c0db84fca509533001f15c7da4d864  usr/bin/big-lxqt-upgrade
 0741e943d6d4a51253ce0a75decd6927  usr/bin/big-lxqt-upgrade-exe
+ce986ce37735fd85881a6a81db7d6acb  usr/bin/big-lxqt-upgrade
 23d1d7cb4b964fc40cda3ac2481c07f7  usr/share/biglinux/big-lxqt-upgrade/en
 1767a66655d51bec70bea028abbe9f48  usr/share/biglinux/big-lxqt-upgrade/pt_BR
