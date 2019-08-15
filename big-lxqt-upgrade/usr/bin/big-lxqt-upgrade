@@ -21,7 +21,7 @@ if [  -e "/rofs" ]; then
 fi
 
 # check out connection to biglinux repository
-PINGTEST=$(ping -c 1 repository.biglinux.com.br | grep [0-9])	
+PINGTEST=$(ping -c 1 biglinux.lua.im | grep [0-9])	
 if [ "$PINGTEST" = "" ]; then
     exit
 fi
