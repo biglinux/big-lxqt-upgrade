@@ -5,7 +5,7 @@
 
 # get default's locale file
 LANGDIR="/usr/share/biglinux/big-lxqt-upgrade"
-if [ $(echo $LANG | grep pt_BR) != "" ]; then
+if [[ $(echo $LANG | grep pt_BR) != "" ]]; then
 . $LANGDIR/pt_BR
 else
 . $LANGDIR/en
