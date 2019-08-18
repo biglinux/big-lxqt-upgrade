@@ -13,8 +13,8 @@ fi
 
 DIALOG="yad --posx=-10 --posy=-50 --undecorated --skip-taskbar --borders=5 --image=synaptic --on-top"
 TEXT="--text="
-YESNO="--button=$LOCAL5:2 --button=$LOCAL3:0 --button=$LOCAL4:1 "
-OK="--button=gtk-ok"
+YESNO="--button=$LOCAL3:0 --button=$LOCAL4:1 "
+
 # do not run it on live system
 if [  -e "/rofs" ]; then
     exit
@@ -38,12 +38,8 @@ if [ "$UPGRADE" != "" ]; then
 	RET="$?"
 	# run synaptic
 	if [ "$RET" = "0" ]; then
-		synaptic-pkexec --non-interactive -o Synaptic::closeZvt=true --hide-main-window --dist-upgrade-mode
-    elif [ "$RET" = "2" ]; then
-       cp /etc/xdg/autostart/big-lxqt-upgrade.desktop  $HOME/.config/autostart
-       echo "Hidden=true" >> $HOME/.config/autostart/big-lxqt-upgrade.desktop
-       $DIALOG $TEXT"\n$LOCAL6" $OK
-    else
-        exit
+		synaptic-pkexec --non-interactive -o Synaptic::closeZvt=true --hide-main-window --dist-upgrade-mode    
+    	else
+        	exit
 	fi
 fi
