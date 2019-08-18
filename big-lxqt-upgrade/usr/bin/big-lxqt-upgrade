@@ -13,7 +13,7 @@ fi
 
 DIALOG="yad --posx=-10 --posy=-50 --undecorated --skip-taskbar --borders=5 --image=synaptic --on-top"
 TEXT="--text="
-YESNO="--button=$LOCAL3:0 --button=$LOCAL4:1 "
+YESNO="--button=gtk-yes:0 --button=gtk-no:1 "
 
 # do not run it on live system
 if [  -e "/rofs" ]; then
