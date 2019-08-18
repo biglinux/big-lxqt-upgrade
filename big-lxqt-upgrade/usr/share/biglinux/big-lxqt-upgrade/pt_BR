@@ -1,2 +1,2 @@
-LOCAL1="\t<b>Atualizações estão disponíveis!</b>\t\t"
-LOCAL2="\tDeseja instalar as atualizações?\n"
+LOCAL1="\t<b>Atualizações estão disponíveis!</b>"
+LOCAL2="\tDeseja instalar as atualizações?"
