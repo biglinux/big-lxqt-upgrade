@@ -11,7 +11,7 @@ else
 . $LANGDIR/en
 fi
 
-DIALOG="yad --posx=-10 --posy=-50 --undecorated --skip-taskbar --borders=5 --image=system-software-update --on-top --width=380"
+DIALOG="yad --posx=-10 --posy=-50 --undecorated --skip-taskbar --borders=5 --image=system-software-update --on-top --width=400"
 TEXT="--text="
 
 # do not run it on live system
@@ -19,8 +19,8 @@ if [  -e "/rofs" ]; then
     exit
 fi
 
-# check out connection to biglinux repository
-PINGTEST=$(ping -c 1 biglinux.lua.im | grep [0-9])	
+# check out connection to ubuntu repository
+PINGTEST=$(ping -c 1 ubuntu.lua.im | grep [0-9])	
 if [ "$PINGTEST" = "" ]; then
     exit
 fi
