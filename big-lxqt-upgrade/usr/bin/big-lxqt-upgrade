@@ -11,9 +11,8 @@ else
 . $LANGDIR/en
 fi
 
-DIALOG="yad --posx=-10 --posy=-50 --undecorated --skip-taskbar --borders=5 --image=synaptic --on-top"
+DIALOG="yad --posx=-10 --posy=-50 --undecorated --skip-taskbar --borders=5 --image=system-software-update --on-top --width=380"
 TEXT="--text="
-YESNO="--button=gtk-yes:0 --button=gtk-no:1 "
 
 # do not run it on live system
 if [  -e "/rofs" ]; then
@@ -34,7 +33,7 @@ QTD=$(cat /tmp/big-update/save | tail -n2 | head -n1)
 
 # display a message
 if [ "$UPGRADE" != "" ]; then
-	$DIALOG $TEXT"\n$LOCAL1\n\n\t$PKG\n\t$QTD\n\n$LOCAL2" $YESNO
+	$DIALOG $TEXT"\n$LOCAL1\n\n\t$PKG\n\t$QTD\n\n$LOCAL2"
 	RET="$?"
 	# run synaptic
 	if [ "$RET" = "0" ]; then
