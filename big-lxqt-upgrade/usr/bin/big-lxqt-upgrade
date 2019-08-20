@@ -3,16 +3,8 @@
 # big-lxqt-upgrade: updates package list and displays
 # information that some updates are available
 
-# get default's locale file
-LANGDIR="/usr/share/biglinux/big-lxqt-upgrade"
-if [[ $(echo $LANG | grep pt_BR) != "" ]]; then
-. $LANGDIR/pt_BR
-else
-. $LANGDIR/en
-fi
-
-DIALOG="yad --posx=-10 --posy=-50 --undecorated --skip-taskbar --borders=5 --image=system-software-update --on-top --width=400"
-TEXT="--text="
+export TEXTDOMAINDIR="/usr/share/locale"
+export TEXTDOMAIN=big-lxqt-upgrade
 
 # do not run it on live system
 if [  -e "/rofs" ]; then
@@ -33,7 +25,10 @@ QTD=$(cat /tmp/big-update/save | tail -n2 | head -n1)
 
 # display a message
 if [ "$UPGRADE" != "" ]; then
-	$DIALOG $TEXT"\n$LOCAL1\n\n\t$PKG\n\t$QTD\n\n$LOCAL2"
+    yad --posx="-10" --posy="-50" --undecorated --skip-taskbar \
+    --borders="5" --image="system-software-update" --on-top \
+    --width="400" --text='\n\t<b>'$"Atualizações estão disponíveis!"'</b>\n\n\t'"$PKG"'\n\t'"$QTD"'\n\n\t'$"Deseja instalar as atualizações?"
+	
 	RET="$?"
 	# run synaptic
 	if [ "$RET" = "0" ]; then
